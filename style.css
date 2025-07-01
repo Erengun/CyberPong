@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap');
+
+body {
+    background: radial-gradient(circle at 20% 50%, #1a0033 0%, #0d011c 40%, #000511 100%);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    letter-spacing: 1.5px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            rgba(0, 240, 255, 0.03) 1px,
+            transparent 2px
+        );
+    pointer-events: none;
+    z-index: 1;
+    animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(2px); }
+}
+
+.game-header {
+    text-align: center;
+    margin: 20px 0;
+    z-index: 2;
+    position: relative;
+}
+
+h1 {
+    margin: 15px 0 8px 0;
+    color: #00f0ff;
+    letter-spacing: 3px;
+    font-weight: 900;
+    font-size: 2.8rem;
+    text-shadow: 
+        0 0 10px #00f0ff,
+        0 0 20px #00f0ff,
+        0 0 40px #ff00ea,
+        0 0 80px #ff00ea;
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+    from {
+        text-shadow: 
+            0 0 10px #00f0ff,
+            0 0 20px #00f0ff,
+            0 0 40px #ff00ea,
+            0 0 80px #ff00ea;
+    }
+    to {
+        text-shadow: 
+            0 0 15px #00f0ff,
+            0 0 30px #00f0ff,
+            0 0 60px #ff00ea,
+            0 0 120px #ff00ea;
+    }
+}
+
+.player-info {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    color: #aaffff;
+    margin: 5px 0;
+    text-shadow: 0 0 8px #00f0ff;
+}
+
+.datetime {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.9rem;
+    color: #ff00ea;
+    margin: 3px 0;
+    text-shadow: 0 0 6px #ff00ea;
+}
+
+#game-container {
+    background: 
+        radial-gradient(circle at 50% 50%, rgba(18, 7, 34, 0.95) 0%, rgba(10, 2, 20, 0.98) 100%);
+    padding: 28px 30px 30px 30px;
+    border-radius: 28px;
+    box-shadow: 
+        0 0 50px #00f0ff33,
+        0 0 100px #ff00ea22,
+        inset 0 0 30px rgba(0, 240, 255, 0.1);
+    margin-bottom: 40px;
+    margin-top: 10px;
+    position: relative;
+    z-index: 2;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+#game-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00f0ff, #ff00ea, #39ff14, #f7e600);
+    border-radius: 30px;
+    z-index: -1;
+    animation: border-glow 3s linear infinite;
+}
+
+@keyframes border-glow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+canvas#pong {
+    display: block;
+    background: 
+        radial-gradient(circle at 25% 25%, #2a0047 0%, #1d0036 50%, #13072e 100%);
+    border: 3px solid #00f0ff;
+    border-radius: 20px;
+    margin: 0 auto;
+    box-shadow: 
+        0 0 40px #00f0ff88,
+        inset 0 0 40px rgba(255, 0, 234, 0.2),
+        0 0 80px rgba(0, 240, 255, 0.3);
+    position: relative;
+    animation: canvas-pulse 4s ease-in-out infinite;
+}
+
+@keyframes canvas-pulse {
+    0%, 100% {
+        box-shadow: 
+            0 0 40px #00f0ff88,
+            inset 0 0 40px rgba(255, 0, 234, 0.2),
+            0 0 80px rgba(0, 240, 255, 0.3);
+    }
+    50% {
+        box-shadow: 
+            0 0 60px #00f0ff99,
+            inset 0 0 50px rgba(255, 0, 234, 0.3),
+            0 0 120px rgba(0, 240, 255, 0.4);
+    }
+}
+
+#pong-play-again {
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(45deg, #201672 0%, #00f0ff 50%, #ff00ea 100%);
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00f0ffcc;
+    box-shadow: 
+        0 0 25px #00f0ff99,
+        inset 0 0 15px rgba(255, 0, 234, 0.3);
+    animation: button-float 2s ease-in-out infinite;
+}
+
+@keyframes button-float {
+    0%, 100% { transform: translateX(-50%) translateY(0px); }
+    50% { transform: translateX(-50%) translateY(-3px); }
+}
+
+#pong-play-again:hover {
+    background: linear-gradient(45deg, #ff00ea 0%, #00f0ff 50%, #39ff14 100%);
+    box-shadow: 
+        0 0 40px #ff00ea99,
+        inset 0 0 25px rgba(0, 240, 255, 0.4);
+    transform: translateX(-50%) scale(1.05);
+}
+
+.floating-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #00f0ff;
+    border-radius: 50%;
+    animation: float-particle 8s linear infinite;
+    box-shadow: 0 0 6px #00f0ff;
+}
+
+.particle:nth-child(odd) {
+    background: #ff00ea;
+    box-shadow: 0 0 6px #ff00ea;
+    animation-duration: 12s;
+}
+
+.particle:nth-child(3n) {
+    background: #39ff14;
+    box-shadow: 0 0 6px #39ff14;
+    animation-duration: 10s;
+}
+
+@keyframes float-particle {
+    0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(50px);
+        opacity: 0;
+    }
+}
